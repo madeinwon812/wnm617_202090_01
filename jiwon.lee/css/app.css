@@ -1,0 +1,710 @@
+
+/* Page Style Resets */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--color-primary-orange: #DB692D;
+	--color-primary-blue: #2B2B2B;
+
+	--color-secondary-orange: ;
+	--color-secondary-blue: #2D68B3;
+
+	--color-neutral-light: #FBFFFD;
+	--color-neutral-gray: #6d6d6d;
+
+	--header-height: 5rem;
+}
+
+
+/* jQuery Mobile Classes */
+
+.ui-mobile,
+.ui-mobile body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Nunito', 'Arial', sans-serif;
+	font-size: 100%;
+	background-color: var(--color-neutral-light);
+}
+
+.ui-mobile .ui-page-active {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Header */
+
+.ui-header {
+	padding-left: 1em;
+	padding-right: 1em;
+	height: var(--header-height);
+	line-height: var(--header-height);
+	background: var(--color-neutral-light);
+	border-width: 0;
+	position: relative;
+	z-index: 2;
+}
+
+.ui-header .ui-title,
+.ui-footer .ui-title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Footer */
+
+.ui-footer {
+	height: var(--header-height);
+	line-height: var(--header-height);
+	background: var(--color-neutral-light);
+	border-width: 0;
+	border-top: 1px solid var(--color-secondary-blue);
+	position: relative;
+	z-index: 2;
+}
+
+[data-role="main"] {
+	background-color: var(--color-neutral-light);
+	padding-top: 2em;
+	padding-bottom: 2em;
+	flex: 1 1 100%;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+
+/* Header / Nav */
+
+.nav ul {
+	list-style-type: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+}
+
+.nav-tabs {
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 18px;
+}
+
+.nav a,
+.nav-tabs a {
+	display: block;
+}
+
+.nav-tabs ul {
+	display: flex;
+	padding: 0;
+	margin: 0;
+}
+
+.nav-tabs li {
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+.nav-tabs a {
+	line-height: 3rem;
+	color: var(--color-secondary-blue);
+}
+
+.nav-tabs .active a {
+	background-color: var(--color-primary-yellow);
+}
+
+/* List Elements */
+
+[data-role="main"] ul {
+	list-style: none;
+}
+
+.ui-header ul,
+.ui-footer ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	position: relative;
+}
+
+.ui-footer li {
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+/* Flex Box Elements */
+
+.display-flex {
+	display: flex;
+}
+
+.flex-stretch {
+	flex: 1 1 auto;
+}
+
+.flex-vertical {
+	flex-direction: column;
+}
+
+.flex-none {
+	flex: none;
+}
+
+/* Text Elements */
+
+h1 {
+	color: var(--color-primary-yellow);
+	font-weight: bold;
+}
+
+.ui-title h2 {
+	margin: 0;
+	color: var(--color-primary-yellow);
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+h3 {
+	color: var(--color-secondary-blue);
+	font-size: 1em;
+	margin: 0;
+}
+
+h4 {
+	color: var(--color-primary-yellow);
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+h5 {
+	color: var(--color-primary-blue);
+	font-size: 1em;
+	font-weight: bold;
+}
+
+h6 {
+	color: var(--color-secondary-blue);
+	font-size: 0.8em;
+	margin: 1em;
+	text-decoration: underline;
+}
+
+p {
+	text-align: left;
+	color: var(--color-neutral-gray);
+	margin: 0;
+}
+
+.list-item p {
+	text-align: center;
+}
+
+.text-underlined {
+	text-decoration: underline;
+	color: var(--color-primary-yellow);
+}
+
+/* Link Elements */
+
+
+.ui-header a,
+.ui-footer a {
+	display: block;
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.ui-header a {
+	padding-top: 0.5em;
+	color: var(--color-primary-blue);
+}
+
+.ui-header a.active {
+	color: var(--color-primary-yellow);
+}
+
+.ui-link {
+	text-decoration: none;
+}
+
+.active {
+	color: var(--color-primary-yellow);
+}
+
+/* Forms & Form Elements */
+
+.all-form {
+	width: 100%;
+	margin: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+}
+
+.form-control {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.ui-mobile .form-label {
+	font-size: ;
+	color: var(--color-secondary-blue);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.form-input {
+	display: block;
+	width: 100%;
+	border-width: 0;
+	border-radius: 0;
+	border-bottom: 1px solid var(--color-primary-blue);
+	outline: 0;
+	background-color: transparent;
+	font-size: 1em;
+	padding: 0.5em 0;
+	color: var(--color-neutral-gray);
+}
+
+.form-input:focus {
+	border-bottom-color: var(--color-primary-yellow);
+}
+
+.form-button-primary {
+	display: block;
+	width: 100%;
+	background-color: var(--color-primary-blue);
+	color: var(--color-neutral-light);
+	font: inherit;
+	text-decoration: none;
+	padding: 0.5em 1em;
+	text-align: center;
+	border-color: transparent;
+	border-radius: 0.3em;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+.form-button-secondary {
+	display: block;
+	width: 100%;
+	background-color: transparent;
+	font: inherit;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 0.5em 1em;
+	text-align: center;
+	color: var(--color-secondary-blue);
+	-webkit-appearance: none;
+}
+
+.form-button-main:hover {
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.form-button-main:active {
+	background-color: var(--color-neutral-yellow);
+}
+
+option {
+	color: var(--color-neutral-gray)
+}
+
+.hotcoyote {
+	display: flex !important;
+	width: 100%;
+	border-width: 1px;
+	background-color: var(--color-neutral-light);
+	color: inherit;
+	font: inherit;
+	text-decoration: none;
+	padding: 0 1em;
+	border-radius: 2em;
+	outline: 0;
+	line-height: inherit;
+	-webkit-appearance: none;
+	padding-top: 0.5em;
+}
+
+#list-search {
+	margin: 0.3em 0.5em;
+	width: 100%;
+}
+
+/* Image Elements */
+
+.logo-image {
+	width: 30%;
+	border-radius: 50%;
+}
+
+.profile-image {
+	width: 50%;
+}
+
+.coyote-profile-image {
+	width: 100%;
+	padding: 1em;
+	border-radius: 50%;
+}
+
+.profile-top {
+	padding-left: 0.5em;
+	padding-right: 1em;
+}
+
+.
+-profile .coyote-profile-image {
+	width: 60%;
+}
+
+.nav-profile-image {
+	height: 4em;
+	border-radius: 50%;
+}
+
+.user-profile-image img {
+	width: 60%;
+	border-radius: 50%;
+	margin: 0.5em;
+	padding: 0.5em;
+	position: relative;
+}
+
+.update-user-image {
+	position: absolute;
+    top: 15em;
+    left: 10em;
+    color: var(--color-neutral-gray);
+}
+
+
+.pin-image {
+	position: absolute;
+    left: 20%;
+    top: 50%;
+    height: 3em;
+    border-radius: 50%;
+}
+
+.recent-image {
+	margin-right: 0.5em;
+}
+
+.recent-image img {
+	width: 75px;
+	height: 75px;
+	object-fit: cover;
+}
+
+
+/* Page Specific Classes */
+
+
+/* SignIn Page */
+
+.logo {
+	width: 140%;
+    text-align: center;
+    margin: 20px 0 20px 0;
+    padding: 20px 0 20px 0;
+}
+
+#signin-page [data-role='main'] {
+	align-items: center;
+	justify-content: center;
+}
+
+
+/* Signup Page */
+
+#signup-page [data-role='main'] {
+	align-items: center;
+	justify-content: center;
+}
+
+
+/* Map */
+
+#recent-page [data-role='main'] {
+   background-image:url('../img/map.png');
+   background-position:center;
+   background-size:cover;
+}
+
+
+
+/* Coyote / User List Page */
+
+#coyote-list-page [data-role = 'main'] {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+
+.coyote-list {
+	width: 100%;
+	text-align: left;
+}
+
+.list-item {
+	display: inline-block;
+	width: 49%;
+	padding-top: 1em;
+}
+
+.list-filters {
+	line-height: 3rem;
+	display: flex;
+	white-space: nowrap;
+	flex: none;
+	overflow-x: auto;
+	margin-top: 10px;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding-bottom: 10px;
+}
+
+.filter {
+	color: var(--color-neutral-gray);
+	font-weight: bold;
+	display: block;
+	padding: 0 14px;
+	border-radius: 20px;
+    margin: 0 5px;
+    line-height: 25px;
+    border: solid 1px var(--color-neutral-gray);
+}
+
+.list {
+	flex: 1 1 auto;
+	position: relative;
+}
+
+/* Coyote / User Profile Page */
+
+.profile-head {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.profile-content,
+.profile-button {
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+.recently-added {
+	display: inline-block;
+	width: 20%;
+	padding-top: 1em;
+}
+
+.recently-added a {
+	font-size: 0.1em;
+}
+
+
+/* Scrollable Elements */
+
+.scrollable {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+
+/* Icons */
+
+.nav-icon {
+    font-size: 1.5em;
+    line-height: 1.5rem;
+    padding-top: 0.5em;
+}
+
+.nav-icon img {
+	height: 1em;
+}
+
+.icon {
+	padding-right: 1em;
+}
+
+.nav-title {
+	line-height: 1.5em;
+	font-size: 1em;
+	color: var(--color-primary-blue);
+}
+
+.nav-title-active {
+	color: var(--color-primary-yellow);
+}
+
+.nav-air {
+	position: absolute;
+    right: 1em;
+    bottom: 1em;
+    height: 3em;
+    background-color: var(--color-neutral-light);
+    border-radius: 50%;
+}
+
+
+/* Modal */
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.modal.active {
+	opacity: 1;
+	pointer-events: initial;
+}
+
+.modal-back {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.6);
+}
+
+.modal-popup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, calc(4em + -50%));
+	background-color: white;
+	border-radius: 0.5em;
+	overflow: hidden;
+	width: 90%;
+	height: auto;
+	transition: all 0.3s;
+}
+
+.modal.active .modal-popup {
+	transform: translate(-50%, -50%);
+}
+
+.modal-body {
+	padding: 1em;
+	text-align: center;
+}
+
+
+/* Map / Description on Coyote Profile Page */
+
+.map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.profile-map {
+	height: 30vh;
+	position: relative;
+}
+
+.profile-description {
+	height: 100%;
+	padding: 20px 15px;
+	color: var(--color-neutral-gray);
+	text-align: left;
+}
+
+.profile-description,
+.profile-map {
+	display: none;
+}
+
+.profile-description.active,
+.profile-map.active {
+	display: block;
+}
+
+
+/* Basin */
+
+.basin {
+	position: relative;
+	background-color: transparent;
+	height: 0;
+	z-index: 2;
+	box-shadow: 0 0 10px rgba(0,0,0,0.25);
+	transition: all 0.3s;
+	flex: none;
+}
+
+.basin.active {
+	height: 16vh;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.basin+footer {
+	transition-delay: 0.3s;
+}
+
+.basin.active+footer{
+	transition-delay: 0s;
+	box-shadow: none;
+}
+
+
+/* Edit Upload Page */
+
+.image-picker {
+	width: 100%;
+	height: 10rem;
+	background-position: top;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.hidden {
+	display: none;
+}
