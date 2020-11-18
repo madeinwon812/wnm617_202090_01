@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 
-	<title>Coyotes Tracker</title>
+	<title>COYOTES</title>
 
 	<!-- Meta Data -->
 	<!-- meta:vp -->
@@ -19,10 +19,12 @@
 	<!-- jQuery Core 2.2.4 Minified -->
 	<script type="text/javascript" src="lib/js/jquery-2.2.4.min.js"></script>
 	<!-- JavaScript -->
-
-   <script src="lib/js/jquery-2.2.4.min.js"></script>
-   <script src="js/app.js"></script>
-   <script src="js/signin.js"></script>
+	<script src="js/maps.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/parts.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/signin.js"></script>
 
 	<!-- jQuery Mobile 1.4.5 Minified -->
 	<script type="text/javascript" src="lib/js/jquery.mobile-1.4.5.min.js"></script>
@@ -33,13 +35,14 @@
 	<!-- Icons -->
 	<script src="https://unpkg.com/feather-icons"></script>
 
-	<!-- Google Maps API -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtMy7NXSfvcyeByBgAj8QNnucdlqzEhrE"
-    async defer></script>
+	<!-- Google Maps API --> 
+	  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOdV4V4e9k-Hv4Exh6ANRo8nElvVCDHI4"
+      async defer></script>
+	 
 </head>
 <body>
 
-	<!-- Signin Page -->
+	<!-- Sign in Page -->
 	<section data-role="page" id="signin-page">
 
 		<!-- Page Main -->
@@ -48,28 +51,38 @@
 				<img class="logo-image" src="img/logo.png">
 			</div>
 			<div class="all-form">
-				<form id="signin-form" data-ajax="false" style="padding:1em">
+				<form id="signin-form" data-ajax="false">
 					<div class="form-control">
 						<label class="form-label" for="signin-username">Username</label>
 						<input class="form-input" type="text" name="username" placeholder=""data-role="none" id="signin-username">
 					</div>
 					<div class="form-control">
-						<label class="form-label" for="login-password">Password</label>
-						<input class="form-input" type="password" name="password" placeholder="" data-role="none" id="login-password">
+						<label class="form-label" for="signin-password">Password</label>
+						<input class="form-input" type="password" name="password" placeholder="" data-role="none" id="signin-password">
 					</div>
 					<div class="form-control">
 						<input type="submit" class="form-button-primary" value="Log In" data-role="none">
 					</div>
-					<div class="form-control">
-						<a href="#signup-page" class="form-button-secondary">Sign Up</a>
-					</div>
-
-					<div class="modal" id="signin-warning">
-                     <div class="modal-toast top" data-deactivate="#signin-warning">
-                       <div class="message">Failure</div>
-                     </div>
+					<div class="form-control" style="text-align:center;font-size: 0.8em">
+                      Don't have an account?
+                    <a href="#signup-page" data-transition="slide" class="emp-link">Sign Up</a>
                     </div>
-				</form>
+                </form>
+
+            <div class="modal" id="signin-notification">
+                <div class="modal-back" data-deactivate="#signin-notification"></div>
+            <div class="modal-popup">
+                 <div class="modal-body">
+                  <h1>Login Failed</h1>
+                  <p>Invalid login or password.</p>
+                  <p>Please try again.</p>
+                 </div>
+                <div class="modal-foot">
+                <a href="#" data-deactivate="#signin-notification">Ok</a>
+            
+            </div>
+           </div>
+ 
 				
 			</div>
 		</main>
@@ -127,7 +140,7 @@
 
 	<!-- Map Page -->
 
-	<section data-role="page" id="recent-page">
+	<section data-role="page" id="map-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -163,7 +176,7 @@
 		<footer data-role="footer">
 			<ul>
 				<li>
-					<a href="#recent-page">
+					<a href="#map-page">
 						<div class="nav-icon">
 							<img src="img/map-pin.svg" alt="Map Icon">
 						</div>
@@ -480,7 +493,7 @@
 						<img src="img/location-image.jpg">
 					</div>
 					<div class="form-control">
-						<a href="#recent-page" class="form-button-primary js-addlocation">Finish</a>
+						<a href="#map-page" class="form-button-primary js-addlocation">Finish</a>
 					</div>
 				</form>	
 			</div>
@@ -634,7 +647,7 @@
 		<footer data-role="footer">
 			<ul>
 				<li>
-					<a href="#recent-page">
+					<a href="#map-page">
 						<div class="nav-icon">
 							<img src="img/map-pin.svg" alt="Map Icon">
 						</div>
@@ -755,7 +768,7 @@
 		<footer data-role="footer">
 			<ul>
 				<li>
-					<a href="#recent-page" class="active">
+					<a href="#map-page" class="active">
 						<div class="nav-icon">
 							<img src="img/map-pin.svg" alt="Map Icon">
 						</div>
@@ -767,7 +780,7 @@
 						<div class="nav-icon">
 							<img src="img/list.svg" alt="List Icon">
 						</div>
-						<div class="nav-title">Coyotes</div>
+						<div class="nav-title">Paws</div>
 					</a>
 				</li>
 				<li>
@@ -832,7 +845,7 @@
 <!-- <script type="text/template" id="footer-nav-template">
 	<ul>
 		<li>
-			<a href="#recent-page">
+			<a href="#map-page">
 				<div class="nav-icon">
 					<img src="img/map-pin.svg" alt="Map Icon">
 				</div>

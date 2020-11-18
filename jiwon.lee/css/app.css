@@ -382,8 +382,7 @@ option {
 	padding-right: 1em;
 }
 
-.
--profile .coyote-profile-image {
+.coyote-profile .coyote-profile-image {
 	width: 60%;
 }
 
@@ -453,14 +452,52 @@ option {
 }
 
 
+
 /* Map */
 
-#recent-page [data-role='main'] {
-   background-image:url('../img/map.png');
-   background-position:center;
-   background-size:cover;
+
+.map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 }
 
+.profile-map {
+	height: 30vh;
+	position: relative;
+}
+
+.profile-description {
+	height: 100%;
+	padding: 20px 15px;
+	color: var(--color-neutral-gray);
+	text-align: left;
+}
+
+.profile-description,
+.profile-map {
+	display: none;
+}
+
+.profile-description.active,
+.profile-map.active {
+	display: block;
+}
+
+
+#map-page .primary-button-container {
+  position: absolute;
+  bottom: 2em;
+  right: 0;
+  left: 0;
+  margin: auto;
+  padding: 0 3em;
+}
+#map-page a.primary-button {
+  box-shadow: var(--box-shadow-dark);
+}
 
 
 /* Coyote / User List Page */
@@ -707,4 +744,13 @@ option {
 
 .hidden {
 	display: none;
+}
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-device-height : 667px) {
+  body {
+    font-size: 80%;
+  }
 }
