@@ -1,5 +1,9 @@
 <?php
 
+function print_p($d) {
+   echo "<pre>",print_r($d),"</pre>";
+}
+
 // Make Connection
 function makeConn() {
    include_once "auth.php";
@@ -54,40 +58,44 @@ function makeStatement($data) {
    $t = $data->type;
    $p = $data->params;
 
+   // print_p([$c,$t,$p]);
+   // die;
+
+
    switch($t) {
 
       // Select Statements
 
       // Get all users
       case "users_all":
-         return makeQuery($c,"SELECT * FROM `track_users`","",$p);
+         return makeQuery($c,"SELECT * FROM `track_users`",$p);
       
       // Get all animals
       case "animals_all":
-         return makeQuery($c,"SELECT * FROM `track_animals`","",$p);
+         return makeQuery($c,"SELECT * FROM `track_animals`",$p);
       
       // Get all locations
       case "locations_all":
-         return makeQuery($c,"SELECT * FROM `track_locations`","",$p);
+         return makeQuery($c,"SELECT * FROM `track_locations`",$p);
       
       // Get all animals from an user
       case "animals_from_user":
-         return makeQuery($c,"SELECT * FROM `track_animals` WHERE uid = ?","i",$p);
+         return makeQuery($c,"SELECT * FROM `track_animals` WHERE uid = ?",$p);
       
       // Get all locations from an animal
       case "locations_from_animal":
-         return makeQuery($c,"SELECT * FROM `track_locations` WHERE aid = ?","i",$p);
+         return makeQuery($c,"SELECT * FROM `track_locations` WHERE aid = ?",$p);
 
       // return makeQuery($c,"SELECT track_animals.id FROM `track_animals` INNER JOIN `track_locations` ON track_animals.id = track_locations.aid,"i",$p);
 
       case "user_by_id":
-         return makeQuery($c,"SELECT * FROM `track_users` WHERE id = ?","i",$p);
+         return makeQuery($c,"SELECT * FROM `track_users` WHERE id = ?",$p);
 
       case "animal_by_id":
-         return makeQuery($c,"SELECT * FROM `track_animals` WHERE id = ?","i",$p);
+         return makeQuery($c,"SELECT * FROM `track_animals` WHERE id = ?",$p);
 
       case "location_by_id":
-         return makeQuery($c,"SELECT * FROM `track_locations` WHERE id = ?","i",$p);
+         return makeQuery($c,"SELECT * FROM `track_locations` WHERE id = ?",$p);
 
       case "check_signin":
          return makeQuery($c,"SELECT * FROM `track_users` WHERE `username`=? AND `password`=md5(?)",$p);
@@ -105,12 +113,108 @@ function makeStatement($data) {
             ) AS l
             ON a.id = l.aid
             WHERE a.uid = ?
-            GROUP BY l.aid","i",$p);
+            GROUP BY l.aid",$p);
+
+      
+      /* ----- CRUD ------ */
+
+      // INSERTS
+      case "insert_user":
+
+         // Check for duplicate users
+         $r = makeQuery($c,"SELECT * FROM `track_users` WHERE `username`=? OR `email`=?",[$p[0],$p[1]]);
+         if(count($r['result'])) return ["error"=>"Username or Email already exists"];
+
+         // Create new user
+         $r = makeQuery($c,"INSERT INTO
+            `track_users`
+            (`name`,`username`,`email`,`city`,`password`,`img`,`date_create`)
+            VALUES
+            (?, ?, md5(?), 'https://via.placeholder.com/400?text=USER', NOW())
+            ",$p);
+         return ["id"=>$c->lastInsertId()];
+
+      case "insert_animal":
+         $r = makeQuery($c,"INSERT INTO
+            `track_animals`
+            (`uid`,`name`,`breed`,`years`,`months`,`color`,`gender`,`img`,`description`,`date_create`)
+            VALUES
+            (?, ?, ?, ?, ?, 'https://via.placeholder.com/400?text=ANIMAL', NOW())
+            ",$p);
+         return ["id"=>$c->lastInsertId()];
+
+      case "insert_location":
+         $r = makeQuery($c,"INSERT INTO
+            `track_locations`
+            (`aid`,`lat`,`lng`,`description`,`icon`,`date_create`)
+            VALUES
+            (?, ?, ?, ?, 'https://via.placeholder.com/400?text=Photo', 'https://via.placeholder.com/100?text=Icon', NOW())
+            ",$p);
+         return [
+            "r"=>$r,
+            "p"=>$p,
+            "id"=>$c->lastInsertId()];
+
+
+
+      // Update Statements
+
+      // Edit user
+
+      case "update_user":
+         $r = makeQuery($c,"UPDATE
+            `track_users`
+            SET
+            `username` = ?,
+            `name` = ?,
+            `email` = ?
+            `location` = ?
+            WHERE `id` = ?
+            ",$p,false);
+         return ["result"=>"success"];
+
+      case "update_animal":
+         $r = makeQuery($c,"UPDATE
+            `track_animals`
+            SET
+            `name`=?,
+            `breed`=?,
+            `color`=?,
+            `years`=?,
+            `months`=?,
+            `gender`=?,
+            `description`=?
+            WHERE `id` = ?
+            ",$p,false);
+         return ["result"=>"success"];
+
+         case "edit_user_password":
+         $r = makeQuery($c,"UPDATE
+            `track_users`
+            SET
+            `password` = ?
+            WHERE id = ?
+            ","si",$p);
+         return
+         ["result" => "success"];
+
+
+      // DELETE STATEMETS
+
+      case "delete_animal":
+         return makeQuery($c,"DELETE FROM `track_animals` WHERE `id`=?",$p);
+
+      case "delete_location":
+         return makeQuery($c,"DELETE FROM `track_locations` WHERE `id`=?",$p);
+
+
+
 
 
       default: return ["error"=>"No Matched Type"];
    }
 }
+
 
 // Post and Get Dump
 

@@ -21,7 +21,7 @@ const makeUserProfile = templater(o=>`
          <img src="${o.img}">
       </div>
    </div>
-   <h5><img src="img/map-pin.svg" class="icon">${o.city}</h5>
+   <h5><img src="img/map-pin.svg" class="icon">${o.location}</h5>
 
 `);
 
@@ -150,8 +150,8 @@ return `
          <input class="form-input" type="text" id="user-email" data-role="none" value="${o.email}">
       </div>
       <div class="form-control">
-         <label class="form-label">City</label>
-         <input class="form-input" type="text" id="user-city" data-role="none" value="${o.city}">
+         <label class="form-label">Location</label>
+         <input class="form-input" type="text" id="user-location" data-role="none" value="${o.location}">
       </div>
    </form>
    `;

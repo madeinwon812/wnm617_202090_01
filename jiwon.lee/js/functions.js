@@ -9,6 +9,17 @@ const query = (options) => {
    }).then(d=>d.json())
 }
 
+const upload = (file) => {
+   
+   let fd = new FormData();
+   fd.append("image",file);
+
+   return fetch('data/api.php',{
+      method:'POST',
+      body: fd
+   }).then(d=>d.json());
+}
+
 // CURRIED FUNCTION the function makes other functions
 const templater = f => a =>
    (Array.isArray(a)?a:[a])

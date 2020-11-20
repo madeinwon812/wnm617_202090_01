@@ -47,6 +47,11 @@ $(()=>{
 		checkSigninForm();
 	})
 
+	.on("submit","#signup-form",function(e){
+		e.preventDefault();
+		checkSignupForm();
+	})
+
 
 	// Signup Form
 	.on("submit","#signup-form",function(e){
@@ -64,7 +69,7 @@ $(()=>{
 				$("#signup-name").val(),
 				$("#signup-username").val(),
 				$("#signup-email").val(),
-				$("#signup-city").val(),
+				$("#signup-location").val(),
 				$("#signup-password").val(),
 			]
 		}).then(d=>{
@@ -165,7 +170,7 @@ $(()=>{
 				$("#user-name").val(),
 				$("#user-username").val(),
 				$("#user-email").val(),
-				$("#user-city").val(),
+				$("#user-location").val(),
 				sessionStorage.userId
 			]
 		}).then(d=>{
