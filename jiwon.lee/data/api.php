@@ -106,7 +106,7 @@ function makeStatement($data) {
          return makeQuery($c,"SELECT
             a.*, l.* 
             FROM `track_animals` AS a
-            LEFT JOIN (
+            RIGHT JOIN (
                SELECT aid,lat,lng,icon
                FROM `track_locations`
                ORDER BY `date_create` DESC
@@ -114,6 +114,32 @@ function makeStatement($data) {
             ON a.id = l.aid
             WHERE a.uid = ?
             GROUP BY l.aid",$p);
+
+
+      // Search
+      case "search_animals":
+         $search = "%$p[0]%";
+         return makeQuery($c, "SELECT
+            *
+            FROM `track_dogs`
+            WHERE (
+               `name` LIKE ? OR
+               `breed` LIKE ? OR
+               `description` LIKE ?
+            ) AND uid = ?
+            ","sssi",[$search,$search,$search,$p[1]]);
+
+
+      // Filter
+         
+      case "filter_animals":
+
+         return makeQuery($c,"SELECT
+         *
+         FROM `track_dogs`
+         WHERE `breed` = ?
+         AND uid = ?
+         ","si",$p);
 
       
       /* ----- CRUD ------ */
@@ -128,7 +154,7 @@ function makeStatement($data) {
          // Create new user
          $r = makeQuery($c,"INSERT INTO
             `track_users`
-            (`name`,`username`,`email`,`city`,`password`,`img`,`date_create`)
+            (`name`,`username`,`email`,`location`,`password`,`img`,`date_create`)
             VALUES
             (?, ?, md5(?), 'https://via.placeholder.com/400?text=USER', NOW())
             ",$p);

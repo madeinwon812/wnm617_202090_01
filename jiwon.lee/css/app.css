@@ -670,6 +670,16 @@ option {
 	text-align: center;
 }
 
+.modal-body p {
+  font-weight: var(--font-weight-light);
+  margin-bottom: 0.8em;
+}
+.modal-body {
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: var(--color-white);
+  padding: 1em;
+  text-align: center;
+}
 
 /* Map / Description on Coyote Profile Page */
 

@@ -65,3 +65,17 @@ const checkUserId = () => {
          $.mobile.navigate("#map-page");
    }
 }
+
+
+const checkSignupForm = () => {
+   let username = $("#signup-username").val();
+   let email = $("#signup-email").val();
+   let password = $("#signup-password").val();
+   let passwordconfirm = $("#signup-password-confirm").val();
+
+   if(password!=passwordconfirm) {
+      throw "Passwords don't match";
+      return;
+      
+   }
+}

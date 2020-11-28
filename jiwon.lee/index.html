@@ -46,7 +46,7 @@
 	<section data-role="page" id="signin-page">
 
 		<!-- Page Main -->
-		<main data-role="main" class="display-flex flex-vertical">
+		<div data-role="main" class="display-flex flex-vertical">
 			<div class="logo">
 				<img class="logo-image" src="img/logo.png">
 			</div>
@@ -68,6 +68,8 @@
                     <a href="#signup-page" data-transition="slide" class="emp-link">Sign Up</a>
                     </div>
                 </form>
+        </div>
+
 
             <div class="modal" id="signin-notification">
                 <div class="modal-back" data-deactivate="#signin-notification"></div>
@@ -82,11 +84,7 @@
             
             </div>
            </div>
- 
-				
-			</div>
-		</main>
-
+	    </div>
 	</section>
 
 
@@ -682,14 +680,16 @@
 
 		<!-- Page Header -->
 		<header data-role="header">
-         <h4>COYOTE PROFILE</h4>
-         <ul>
-            <li><a href="#" data-rel="back">
-               <img src="img/arrow-left.svg" alt="" class="icon">
-            </a></li>
-            <li class="flex-stretch"></li>
-         </ul>
-      </header>
+			<nav>
+				<ul>
+					<li class="flex-stretch nav-icon">
+						<a href="#coyote-list-page">
+							<img src="img/arrow-left.svg">
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
 		<!-- Page Main -->
 		<main data-role="main">	
@@ -822,6 +822,80 @@
 		</main>
 		
 	</section>
+
+
+	 <!-- Edit Password Page -->
+    <section data-role="page" id="edit-password-page">
+
+    	<!-- Page Header -->
+		<header data-role="header">
+			<nav>
+				<ul>
+					<li class="flex-stretch nav-icon">
+						<a href="#" data-rel="back">
+							<img src="img/arrow-left.svg">
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main data-role="main">
+			<div class="all-form edit-user-form"></div>
+			<div class="all-form form-control">
+				<a href="#" data-rel="back" class="form-button-primary js-edituser">Save</a>
+			</div>
+			<div class="form-control">
+				<a href="#user-list-page" class="form-button-secondary">Cancel</a>
+			</div>
+		</main>
+		
+
+
+        <div class="edit-container">
+          <h1>Edit Password</h1>
+          <form id="edit-password-form" class="no-padding" data-ajax="false">
+            <div class="input-container">
+              <div class="form-control">
+                <label for="edit-current-password" class="form-label">
+                  Current Password
+                </label>
+                <input
+                  id="edit-current-password"
+                  type="text"
+                  class="form-input"
+                  data-role="none"
+                  placeholder="Type your current password"
+                />
+              </div>
+              <div class="form-control">
+                <label for="edit-new-password" class="form-label">New Password</label>
+                <input
+                  id="edit-new-password"
+                  type="text"
+                  class="form-input"
+                  data-role="none"
+                  placeholder="Type your new password"
+                />
+              </div>
+              <div class="form-control">
+                <label for="edit-again-password" class="form-label">Confirm Password</label>
+                <input
+                  id="edit-again-password"
+                  type="text"
+                  class="form-input"
+                  data-role="none"
+                  placeholder="Re-enter your new password"
+                />
+              </div>
+            </div>
+            <div class="form-control">
+              <a href="#" class="form-button">Update</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
 
 

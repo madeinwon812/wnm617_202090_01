@@ -7,36 +7,25 @@ $(()=>{
 	// Event Delegation
 	$(document)
 
-	.on("pagecontainerbeforeshow",function(e,ui){
+	.on("pagecontainerbeforeshow", function( e, ui ) {
+    console.log('e', e);
+    console.log('ui', ui.toPage[0].id);
 
 		// console.log(ui.toPage[0].id)
 
+		//page routing
+
 		switch(ui.toPage[0].id){
 
-			case "map-page":
-				showRecentPage();
-				break;
-			case "coyote-list-page":
-				showListPage();
-				break;
-			case "coyote-profile-page":
-				showAnimalPage();
-				break;
-			case "add-location-page":
-				showAddLocationPage();
-				break;
-			case "user-list-page":
-				showUserPage();
-				break;
-			case "edit-user-page":
-				showEditUserPage();
-				break;
-			case "edit-coyote-page":
-				showEditAnimalPage();
-				break;
-			case "map-page":
-				showRecentAddChoicePage();
-				break;
+			case "map-page": RecentPage(); break;
+			case "coyote-list-page": ListPage(); break;
+			case "coyote-profile-page": AnimalPage(); break;
+			case "add-location-page": AddLocationPage(); break;
+			case "user-list-page": UserPage(); break;
+			case "edit-user-page": EditUserPage(); break;
+			case "edit-coyote-page": EditAnimalPage(); break;
+			case "map-page": RecentAddChoicePage(); break;
+			
 		}		
 	})
 

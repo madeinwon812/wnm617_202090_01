@@ -11,7 +11,7 @@ const blank_animal = {
 };
 
 // ASYNC
-const showListPage = async (animals) => {
+const ListPage = async (animals) => {
 	if(animals===undefined) {
 		let d = await query({
 			type:'animals_from_user',
@@ -26,7 +26,7 @@ const showListPage = async (animals) => {
 		.html(makeAnimalList(animals));
 }
 
-const showUserPage = async () => {
+const UserPage = async () => {
 	let d = await query({
 		type:'user_by_id',
 		params:[sessionStorage.userId]
@@ -38,10 +38,10 @@ const showUserPage = async () => {
 }
 
 
-const callAnimalProfile = (id,target) => {
+const AnimalProfilePage = (id,target) => {
 	query({
 		type:'animal_by_id',
-		params:[id]
+		params:[sessionStorage.animalId]
 	}).then(d=>{
 
 		$(target).html(makeAnimalProfile(d.result));
@@ -51,7 +51,7 @@ const callAnimalProfile = (id,target) => {
 }
 
 
-const callAnimalMap = (id,target) => {
+const AnimalMapPage = (id,target) => {
 	query({
 		type:'locations_from_animal',
 		params:[id]
@@ -63,7 +63,7 @@ const callAnimalMap = (id,target) => {
 }
 
 
-const showAnimalPage = async () => {
+const AnimalPage = async () => {
 	if(sessionStorage.animalId===undefined) {
 		throw("No animal id defined");
 	}
@@ -77,7 +77,7 @@ const showAnimalPage = async () => {
 		"#coyote-profile-page .map");
 }
 
-const showRecentPage = async () => {
+const RecentPage = async () => {
 
 	let d = await query({
 		type:'recent_animal_locations',
@@ -118,7 +118,7 @@ const showRecentPage = async () => {
 	});
 }
 
-const showAddLocationPage = async () => {
+const AddLocationPage = async () => {
 
 	let map_el = await makeMap("#add-location-page .map");
 
@@ -144,7 +144,7 @@ const showAddLocationPage = async () => {
 	setMapBounds(map_el.data("map"),[]);
 }
 
-const showEditUserPage = async () => {
+const EditUserPage = async () => {
 	let d = await query({
 		type:'user_by_id',
 		params:[sessionStorage.userId]
@@ -154,7 +154,7 @@ const showEditUserPage = async () => {
 		.html(makeEditUserForm(d.result[0]))
 }
 
-const showEditAnimalPage = async () => {
+const EditAnimalPage = async () => {
 	let d = await query({
 		type:'animal_by_id',
 		params:[sessionStorage.animalId]
@@ -164,7 +164,7 @@ const showEditAnimalPage = async () => {
 		.html(makeEditAnimalForm(d.result[0]))
 }
 
-const showRecentAddChoicePage = async (selection) => {
+const RecentAddChoicePage = async (selection) => {
 	$("#add-location-redirect").val("#map-page");
 	makeAddAnimalChoice(selection);
 }
