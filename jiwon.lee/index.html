@@ -19,11 +19,12 @@
 	<!-- jQuery Core 2.2.4 Minified -->
 	<script type="text/javascript" src="lib/js/jquery-2.2.4.min.js"></script>
 	<!-- JavaScript -->
-	<script src="js/maps.js"></script>
+	<script src="js/app.js"></script>
+    <script src="js/forms.js"></script>
     <script src="js/functions.js"></script>
-    <script src="js/parts.js"></script>
+    <script src="js/maps.js"></script>
     <script src="js/pages.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/parts.js"></script>
     <script src="js/signin.js"></script>
 
 	<!-- jQuery Mobile 1.4.5 Minified -->
@@ -120,9 +121,9 @@
 						<input class="form-input" type="password" placeholder="Create your password" data-role="none" id="signup-password">
 					</div>
 					<div class="form-control">
-						<label class="form-label" for="signup-password2">Password Confirmation</label>
+						<label class="form-label" for="signup-password-confirm">Password Confirmation</label>
 						<input class="form-input" type="password" placeholder="Enter your password again" data-role="none" id="signup-password2">
-					</div>
+					</div> 
 					<div class="form-control">
 						<button type="submit" class="form-button-primary" data-role="none">Sign Up</button>
 					</div>
@@ -695,6 +696,9 @@
 		<main data-role="main">	
 			<div class="scrollable">
 				<div class="profile-top"></div>
+                  <div class="display-flex">
+                  	<div class="profile-image flex-none">
+                  	  
 				<nav class="profile-nav nav-tabs">
 					<ul>
 						<li class="active"><a href="#">Profile</a></li>

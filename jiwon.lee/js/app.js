@@ -31,23 +31,20 @@ $(()=>{
 
 	// Forms Submits
 
+
+    // Signin Form
 	.on("submit","#signin-form",function(e){
 		e.preventDefault();
 		checkSigninForm();
 	})
-
-	.on("submit","#signup-form",function(e){
-		e.preventDefault();
-		checkSignupForm();
-	})
-
+    
 
 	// Signup Form
 	.on("submit","#signup-form",function(e){
 		e.preventDefault();
 
 		// Check if passwords match
-		if($("#signup-password").val()!=$("#signup-password2").val()){
+		if($("#signup-password").val()!=$("#signup-password-confirm").val()){
 			throw "Passwords don't match";
 			return;
 		}
@@ -355,7 +352,6 @@ $(()=>{
 				.siblings().removeClass("active");
 	})
 	;
-
 
 
 

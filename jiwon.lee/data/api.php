@@ -28,6 +28,23 @@ function fetchAll($r) {
 }
 
 
+// Upload images
+function makeUpload($file,$folder) {
+   $filename = microtime(true) . "_" .
+      $_FILES[$file]['name'];
+
+   if(@move_uploaded_file(
+      $_FILES[$file]['tmp_name'],
+      $folder . $filename
+   )) return ["result"=>$filename];
+
+   else return [
+      "error"=>"File Upload Failed",
+      "_FILES"=>$_FILES,
+      "filename"=>$filename
+   ];
+}
+
 // connection, prepared statement, parameters
 function makeQuery($c,$ps,$p,$makeResults=true) {
    try {
@@ -121,7 +138,7 @@ function makeStatement($data) {
          $search = "%$p[0]%";
          return makeQuery($c, "SELECT
             *
-            FROM `track_dogs`
+            FROM `track_animals`
             WHERE (
                `name` LIKE ? OR
                `breed` LIKE ? OR
@@ -136,7 +153,7 @@ function makeStatement($data) {
 
          return makeQuery($c,"SELECT
          *
-         FROM `track_dogs`
+         FROM `track_animals`
          WHERE `breed` = ?
          AND uid = ?
          ","si",$p);
@@ -156,26 +173,31 @@ function makeStatement($data) {
             `track_users`
             (`name`,`username`,`email`,`location`,`password`,`img`,`date_create`)
             VALUES
-            (?, ?, md5(?), 'https://via.placeholder.com/400?text=USER', NOW())
-            ",$p);
+            (?,?,?,?,md5(?),'https://via.placeholder.com/100/888/fff/?text=USER',NOW())
+            ","sssss",$p);
          return ["id"=>$c->lastInsertId()];
+
+
+         // Create new coyote
 
       case "insert_animal":
          $r = makeQuery($c,"INSERT INTO
             `track_animals`
             (`uid`,`name`,`breed`,`years`,`months`,`color`,`gender`,`img`,`description`,`date_create`)
             VALUES
-            (?, ?, ?, ?, ?, 'https://via.placeholder.com/400?text=ANIMAL', NOW())
-            ",$p);
+            (?, ?, ?, ?, ?, ?, ?, 'https://via.placeholder.com/400/?text=PAWS',?,NOW())
+            ","issiisss",$p);
          return ["id"=>$c->lastInsertId()];
+
+         // Create new location
 
       case "insert_location":
          $r = makeQuery($c,"INSERT INTO
             `track_locations`
             (`aid`,`lat`,`lng`,`description`,`icon`,`date_create`)
             VALUES
-            (?, ?, ?, ?, 'https://via.placeholder.com/400?text=Photo', 'https://via.placeholder.com/100?text=Icon', NOW())
-            ",$p);
+            (?, ?, ?, ?, 'http://madeinwon.com/aau/wnm617/jiwon.lee/img/map-pin.svg',NOW())
+            ","idds",$p);
          return [
             "r"=>$r,
             "p"=>$p,
@@ -187,17 +209,28 @@ function makeStatement($data) {
 
       // Edit user
 
-      case "update_user":
+     case "edit_user":
          $r = makeQuery($c,"UPDATE
             `track_users`
             SET
-            `username` = ?,
             `name` = ?,
-            `email` = ?
+            `username` = ?,
+            `email` = ?,
             `location` = ?
-            WHERE `id` = ?
-            ",$p,false);
-         return ["result"=>"success"];
+            WHERE id = ?
+            ","ssssi",$p);
+         return
+         ["result" => "success"];
+
+         case "edit_user_password":
+         $r = makeQuery($c,"UPDATE
+            `track_users`
+            SET
+            `password` = ?
+            WHERE id = ?
+            ","si",$p);
+         return
+         ["result" => "success"];
 
       case "update_animal":
          $r = makeQuery($c,"UPDATE
