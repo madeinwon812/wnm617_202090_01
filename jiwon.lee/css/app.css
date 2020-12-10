@@ -339,7 +339,7 @@ option {
 	color: var(--color-neutral-gray)
 }
 
-.hotcoyote {
+.hotdog {
 	display: flex !important;
 	width: 100%;
 	border-width: 1px;
@@ -355,7 +355,7 @@ option {
 	padding-top: 0.5em;
 }
 
-#list-search {
+#list-search-form {
 	margin: 0.3em 0.5em;
 	width: 100%;
 }
@@ -363,7 +363,7 @@ option {
 /* Image Elements */
 
 .logo-image {
-	width: 30%;
+	width: 35%;
 	border-radius: 50%;
 }
 
@@ -435,7 +435,7 @@ option {
 	width: 140%;
     text-align: center;
     margin: 20px 0 20px 0;
-    padding: 20px 0 20px 0;
+    padding: 50px 0 20px 0;
 }
 
 #signin-page [data-role='main'] {
@@ -500,7 +500,7 @@ option {
 }
 
 
-/* Coyote / User List Page */
+/* Coyote / User Profile Page */
 
 #coyote-list-page [data-role = 'main'] {
 	display: flex;
@@ -519,7 +519,7 @@ option {
 	padding-top: 1em;
 }
 
-.list-filters {
+.filter-list {
 	line-height: 3rem;
 	display: flex;
 	white-space: nowrap;

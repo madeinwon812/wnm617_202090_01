@@ -14,31 +14,31 @@ const blank_animal = {
 const ListPage = async (animals) => {
 	if(animals===undefined) {
 		let d = await query({
-			type:'animals_from_user',
+			type:'animals_by_user_id',
 			params:[sessionStorage.userId]
 		});
 		animals = d.result;
 	}
 
-	// console.log(d);
+	//console.log(d);
 
 	$("#coyote-list-page .coyote-list")
 		.html(makeAnimalList(animals));
 }
 
-const UserPage = async () => {
+const UserProfilePage = async () => {
 	let d = await query({
 		type:'user_by_id',
 		params:[sessionStorage.userId]
 	});
 
-	// console.log(d);
+	//console.log(d);
 
-	$("#user-list-page .profile-head").html(makeUserProfile(d.result));
+	$("#user-profile-page .profile-head").html(makeUserProfile(d.result));
 }
 
 
-const AnimalProfilePage = (id,target) => {
+const callAnimalProfile = (id,target) => {
 	query({
 		type:'animal_by_id',
 		params:[sessionStorage.animalId]
@@ -51,9 +51,9 @@ const AnimalProfilePage = (id,target) => {
 }
 
 
-const AnimalMapPage = (id,target) => {
+const callAnimalMapPage = (id,target) => {
 	query({
-		type:'locations_from_animal',
+		type:'locations_by_animal_id',
 		params:[id]
 	}).then(async d=>{
 		let map_el = await makeMap(target);
@@ -63,7 +63,7 @@ const AnimalMapPage = (id,target) => {
 }
 
 
-const AnimalPage = async () => {
+const AnimalProfilePage = async () => {
 	if(sessionStorage.animalId===undefined) {
 		throw("No animal id defined");
 	}
@@ -72,7 +72,7 @@ const AnimalPage = async () => {
 		sessionStorage.animalId,
 		"#coyote-profile-page .profile-top");
 
-	callAnimalMap(
+	callAnimalMapPage(
 		sessionStorage.animalId,
 		"#coyote-profile-page .map");
 }
@@ -80,11 +80,11 @@ const AnimalPage = async () => {
 const RecentPage = async () => {
 
 	let d = await query({
-		type:'recent_animal_locations',
+		type:'recent_locations',
 		params:[sessionStorage.userId]
 	});
 
-	console.log(d)
+	
 
 	let animals = d.result.reduce((r,o)=>{
 		o.icon = o.img;
@@ -118,49 +118,46 @@ const RecentPage = async () => {
 	});
 }
 
-const AddLocationPage = async () => {
 
-	let map_el = await makeMap("#add-location-page .map");
+const LocationAddPage = async() => {
+   let map_el = await makeMap("#location-add-page .map");
+   makeMarkers(map_el,[]);
 
-	let m = false;
+   let map = map_el.data('map');
 
-	map_el.data("map").addListener("click",function(e){
-		let pos = {
-			lat:e.latLng.lat(),
-			lng:e.latLng.lng()
-		};
+   map.addListener("click",function(e){
+      console.log(e)
+      let posFromClick = {lat:e.latLng.lat(),lng:e.latLng.lng()};
+      let posFromCenter = {lat:map.getCenter().lat(),lng:map.getCenter().lng()};
+      console.log(posFromClick,posFromCenter)
+      $("#location-add-lat").val(posFromClick.lat)
+      $("#location-add-lng").val(posFromClick.lng)
 
-		if(m!=false) m.setMap(null);
+      makeMarkers(map_el,[posFromClick],false);
+   });
 
-		$("#add-location-lat").val(pos.lat);
-		$("#add-location-lng").val(pos.lng);
 
-		m = new google.maps.Marker({
-			position: pos,
-			map: map_el.data("map")
-		});
-	});
-
-	setMapBounds(map_el.data("map"),[]);
 }
 
-const EditUserPage = async () => {
+const UserEditPage = async () => {
 	let d = await query({
 		type:'user_by_id',
 		params:[sessionStorage.userId]
 	});
 
-	$("#edit-user-page .edit-user-form")
-		.html(makeEditUserForm(d.result[0]))
+	console.log(d);
+
+	$("#user-edit-page .edit-user-form")
+		.html(makeUserEditForm(d.result[0]))
 }
 
-const EditAnimalPage = async () => {
+const AnimalEditPage = async () => {
 	let d = await query({
 		type:'animal_by_id',
 		params:[sessionStorage.animalId]
 	});
 
-	$("#edit-coyote-page .edit-coyote-form")
+	$("#coyote-edit-page .edit-coyote-form")
 		.html(makeEditAnimalForm(d.result[0]))
 }
 

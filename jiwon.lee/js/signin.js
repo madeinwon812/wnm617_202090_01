@@ -61,21 +61,13 @@ const checkUserId = () => {
          $.mobile.navigate("#signin-page");
    } else {
       // logged in
-      if(p.some(o=>window.location.hash===o))
-         $.mobile.navigate("#map-page");
+      if(p.some(o=>window.location.hash===o)) {
+         query({type:'animals_by_user_id',params:[sessionStorage.userId]})
+         .then(d=>{
+            if(d.result.length) $.mobile.navigate("#map-page");
+            else $.mobile.navigate("#list-page");
+         })
+      }
    }
 }
 
-
-const checkSignupForm = () => {
-   let username = $("#signup-username").val();
-   let email = $("#signup-email").val();
-   let password = $("#signup-password").val();
-   let passwordconfirm = $("#signup-password-confirm").val();
-
-   if(password!=passwordconfirm) {
-      throw "Passwords don't match";
-      return;
-      
-   }
-}

@@ -4,6 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="apple-touch-icon" href="img/logo.png">
+    <link rel="icon" href="img/logo.png">
+
 	<title>COYOTES</title>
 
 	<!-- Meta Data -->
@@ -20,7 +26,7 @@
 	<script type="text/javascript" src="lib/js/jquery-2.2.4.min.js"></script>
 	<!-- JavaScript -->
 	<script src="js/app.js"></script>
-    <script src="js/forms.js"></script>
+	<script src="js/forms.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/maps.js"></script>
     <script src="js/pages.js"></script>
@@ -122,7 +128,7 @@
 					</div>
 					<div class="form-control">
 						<label class="form-label" for="signup-password-confirm">Password Confirmation</label>
-						<input class="form-input" type="password" placeholder="Enter your password again" data-role="none" id="signup-password2">
+						<input class="form-input" type="password" placeholder="Enter your password again" data-role="none" id="signup-confirm">
 					</div> 
 					<div class="form-control">
 						<button type="submit" class="form-button-primary" data-role="none">Sign Up</button>
@@ -191,7 +197,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#user-list-page">
+					<a href="#user-profile-page">
 						<div class="nav-icon">
 							<img src="img/user.svg" alt="Profile Icon">
 						</div>
@@ -329,7 +335,7 @@
 					</form>
 
 					<div class="form-control">
-						<a href="#coyote-list-page" class="js-addnewanimal form-button-primary">Add</a>
+						<a href="#coyote-list-page" class="js-animal-add form-button-primary">Add</a>
 					</div>
 				</div>
 			</div>			
@@ -356,7 +362,8 @@
 
 		<!-- Page Main -->
 		<main data-role="main">
-			<form class="all-form" id="add-coyote-form">
+			<form class="all-form" id="add-coyote-form" data-ajax="false" style="padding:1em">
+				<input type="hidden" id="coyote-add-destination" value="#coyote-list-page">
 				<div class="form-control">
 					<label class="form-label" for="coyote-profile-name">Name</label>
 					<input class="form-input" type="text" placeholder="Create a coyote name" data-role="none" id="coyote-profile-name">
@@ -434,7 +441,7 @@
 
 
 	<!-- Add Location Page -->
-	<section data-role="page" id="add-location-page">
+	<section data-role="page" id="location-add-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -450,8 +457,8 @@
 		</header>
 
 		<main data-role="main">
-			<input type="hidden" id="add-location-lat">
-			<input type="hidden" id="add-location-lng">
+			<input type="hidden" id="location-add-lat">
+			<input type="hidden" id="location-add-lng">
 			<div class="map"></div>
 		</main>
 
@@ -492,7 +499,7 @@
 						<img src="img/location-image.jpg">
 					</div>
 					<div class="form-control">
-						<a href="#map-page" class="form-button-primary js-addlocation">Finish</a>
+						<a href="#map-page" class="form-button-primary js-location-add">Finish</a>
 					</div>
 				</form>	
 			</div>
@@ -541,7 +548,7 @@
 
 	<!-- Upload User Image Page -->
 
-	<section data-role="page" id="edit-user-upload-page">
+	<section data-role="page" id="user-upload-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -570,7 +577,7 @@
 					<input type="file" id="edit-user-upload-image" data-role="none" class="hidden">
 				</div>
 				<div class="form-control">
-					<a href="#user-list-page" class="form-button-primary js-edituserupload">Save</a>
+					<a href="#user-profile-page" class="form-button-primary js-user-upload">Save</a>
 				</div>
 			</form>
 		</main>
@@ -587,7 +594,7 @@
 			<nav>
 				<ul>
 					<li class="flex-stretch">
-						<form id="list-search" class="hotcoyote" data-ajax="false">
+						<form class="hotdog" id="list-search-form"  data-ajax="false">
 							<input class="search form-input" type="search" placeholder="Search coyotes" data-role="none">
 						</form>
 					</li>
@@ -600,7 +607,7 @@
 
 		<!-- Page Main -->
 		<main data-role="main">
-			<div class="list-filters">
+			<div class="filter-list">
 				<div class="filter" data-column="breed" data-value="">
 					<span>All</span>
 				</div>
@@ -662,7 +669,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#user-list-page">
+					<a href="#user-profile-page">
 						<div class="nav-icon">
 							<img src="img/user.svg" alt="Profile Icon">
 						</div>
@@ -696,9 +703,6 @@
 		<main data-role="main">	
 			<div class="scrollable">
 				<div class="profile-top"></div>
-                  <div class="display-flex">
-                  	<div class="profile-image flex-none">
-                  	  
 				<nav class="profile-nav nav-tabs">
 					<ul>
 						<li class="active"><a href="#">Profile</a></li>
@@ -724,7 +728,7 @@
 
 	<!-- Edit Coyote Page -->
 
-	<section data-role="page" id="edit-coyote-page">
+	<section data-role="page" id="coyote-edit-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -746,8 +750,8 @@
 	</section>
 
 
-	<!-- User List Page -->
-	<section data-role="page" id="user-list-page">
+	<!-- User Profile Page -->
+	<section data-role="page" id="user-profile-page">
 
 		<!-- Page Header -->
 		<header data-role="header" data-template="#header-template"></header>
@@ -758,7 +762,7 @@
 				<div class="profile-head"></div>
 				<div class="all-form">
 					<div class="form-control">
-						<a href="#edit-user-page" data-role="none" class="form-button-primary">Update Profile</a>
+						<a href="#user-edit-page" data-role="none" class="form-button-primary">Update Profile</a>
 					</div>
 					<div class="form-control">
 						<a href="#" class="js-logout form-button-secondary">Log out</a>
@@ -786,7 +790,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#user-list-page" class="active">
+					<a href="#user-profile-page" class="active">
 						<div class="nav-icon">
 							<img src="img/user.svg" alt="Profile Icon">
 						</div>
@@ -800,7 +804,7 @@
 
 
 	<!-- Edit User Page -->
-	<section data-role="page" id="edit-user-page">
+	<section data-role="page" id="user-edit-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -818,10 +822,10 @@
 		<main data-role="main">
 			<div class="all-form edit-user-form"></div>
 			<div class="all-form form-control">
-				<a href="#" data-rel="back" class="form-button-primary js-edituser">Save</a>
+				<a href="#" data-rel="back" class="form-button-primary js-user-edit">Save</a>
 			</div>
 			<div class="form-control">
-				<a href="#user-list-page" class="form-button-secondary">Cancel</a>
+				<a href="#user-profile-page" class="form-button-secondary">Cancel</a>
 			</div>
 		</main>
 		
@@ -847,10 +851,10 @@
 		<main data-role="main">
 			<div class="all-form edit-user-form"></div>
 			<div class="all-form form-control">
-				<a href="#" data-rel="back" class="form-button-primary js-edituser">Save</a>
+				<a href="#" data-rel="back" class="form-button-primary js-user-edit">Save</a>
 			</div>
 			<div class="form-control">
-				<a href="#user-list-page" class="form-button-secondary">Cancel</a>
+				<a href="#user-profile-page" class="form-button-secondary">Cancel</a>
 			</div>
 		</main>
 		
@@ -937,7 +941,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#user-list-page">
+			<a href="#user-profile-page">
 				<div class="nav-icon">
 					<img src="img/user.svg" alt="Profile Icon">
 				</div>

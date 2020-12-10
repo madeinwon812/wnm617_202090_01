@@ -1,10 +1,11 @@
 
+
 // templater(f=>{}) ([{},{}])
 
 const makeAnimalList = templater(o=>`
    
    <div class="list-item">
-      <a href="#coyote-profile-page" class="animal-jump" data-id="${o.id}">
+      <a href="#coyote-profile-page" class="js-animal-jump" data-id="${o.id}">
          <img class="coyote-profile-image" src="${o.img}">
       </a>
       <p>${o.name}</p>
@@ -18,7 +19,7 @@ const makeUserProfile = templater(o=>`
    <h4>Hello ${o.name}</h4>
    <div class="profile-head">
       <div class="user-profile-image">
-         <img src="${o.img}">
+         <img src="${o.img}" alt="">
       </div>
    </div>
    <h5><img src="img/map-pin.svg" class="icon">${o.location}</h5>
@@ -31,8 +32,8 @@ const makeAnimalProfile = templater(o=>`
       <div class="profile-image flex-none">
          <img class="coyote-profile-image" src="${o.img}">
          <div class="form-control">
-            <span><a href="#edit-coyote-page"><img src="img/edit.svg" class="icon"></a><span>
-            <span><a href="#" class="js-deletecoyote" data-id="${o.id}"><img src="img/trash.svg" class="icon"></a></span>
+            <span><a href="#coyote-edit-page"><img src="img/edit.svg" class="icon"></a><span>
+            <span><a href="#" class="js-animal-delete" data-id="${o.id}"><img src="img/trash.svg" class="icon"></a></span>
          </div>
       </div>
       <div class="flex-stretch">
@@ -78,7 +79,7 @@ const makeRecentWindow = templater(o=>`
             <p class="form-label"><strong>Gender</strong>: ${o.gender}</p>
          </div>
          <div>
-            <a href="#coyote-profile-page" class="form-button-primary animal-jump" data-id="${o.id}">Visit</a>
+            <a href="#coyote-profile-page" class="form-button-primary js-animal-jump" data-id="${o.id}">Visit</a>
          </div>
       </div>
    </div>
@@ -124,11 +125,10 @@ const makeEditGenderSelect = (gender) => {
 }
 
 
-
-const makeEditUserForm = (o) => {
+const makeUserEditForm = (o) => {
 
 return `
-   <form id="eidt-user-form">
+   <form id="edit-user-form">
       <div class="form-control">
          <div class="user-profile-image">
             <img src="${o.img}">
@@ -191,12 +191,43 @@ return `
          <input class="form-input" type="text" id="coyote-description" data-role="none" value="${o.description}">
       </div>
       <div class="form-control">
-         <a href="#coyote-profile-page" class="form-button-primary js-editcoyote">Save</a>
+         <a href="#coyote-profile-page" class="form-button-primary js-animal-edit">Save</a>
       </div>
    </form>
 `;
 }
 
+
+const drawAnimalList = (a,empty_phrase="No animals yet, you should add some.") => {
+   $("#coyote-list-page .animallist").html(
+      a.length ? makeAnimalList(a) : empty_phrase
+   )
+}
+
+const capitalize = s => s[0].toUpperCase()+s.substr(1);
+
+
+const filterList = (animals,type) => {
+   let a = [...(new Set(animals.map(o=>o[type])))];
+   return templater(o=>`<div class="filter" data-field="${type}" data-value="${o}">${capitalize(o)}</div>`)(a);
+}
+
+const makeFilterList = (animals) => {
+   return `
+   <div class="filter" data-field="type" data-value="">All</div>
+   |
+   ${filterList(animals,'name')}
+   |
+   ${filterList(animals,'breed')}
+   `
+}
+
+const makeUploaderImage = ({namespace,folder,name}) => {
+   console.log(namespace,folder,name)
+   $(`#${namespace}-image`).val(folder+name);
+   $(`#${namespace}-page .image-uploader`)
+      .css({'background-image':`url(${folder+name}`})
+}
 
 const makeAddAnimalChoice = async(selection) => {
    let d = await query({
