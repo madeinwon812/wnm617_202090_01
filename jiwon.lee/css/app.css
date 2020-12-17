@@ -8,10 +8,10 @@
 }
 
 :root {
-	--color-primary-orange: #DB692D;
+	--color-primary-orange: #8a7754;
 	--color-primary-blue: #2B2B2B;
 
-	--color-secondary-orange: ;
+	--color-secondary-orange: #DB692D;
 	--color-secondary-blue: #2D68B3;
 
 	--color-neutral-light: #FBFFFD;
@@ -130,11 +130,11 @@
 
 .nav-tabs a {
 	line-height: 3rem;
-	color: var(--color-secondary-blue);
+	color: var(--color-primary-blue);
 }
 
 .nav-tabs .active a {
-	background-color: var(--color-primary-yellow);
+	background-color: var(--color-primary-orange);
 }
 
 /* List Elements */
@@ -178,13 +178,13 @@
 /* Text Elements */
 
 h1 {
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 	font-weight: bold;
 }
 
 .ui-title h2 {
 	margin: 0;
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 	font-size: 1.5em;
 	font-weight: bold;
 }
@@ -196,7 +196,7 @@ h3 {
 }
 
 h4 {
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-blue);
 	font-size: 1.2em;
 	font-weight: bold;
 }
@@ -226,7 +226,7 @@ p {
 
 .text-underlined {
 	text-decoration: underline;
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 }
 
 /* Link Elements */
@@ -246,7 +246,7 @@ p {
 }
 
 .ui-header a.active {
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 }
 
 .ui-link {
@@ -254,7 +254,7 @@ p {
 }
 
 .active {
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 }
 
 /* Forms & Form Elements */
@@ -294,7 +294,7 @@ p {
 }
 
 .form-input:focus {
-	border-bottom-color: var(--color-primary-yellow);
+	border-bottom-color: var(--color-primary-orange);
 }
 
 .form-button-primary {
@@ -355,7 +355,7 @@ option {
 	padding-top: 0.5em;
 }
 
-#list-search-form {
+#list-search {
 	margin: 0.3em 0.5em;
 	width: 100%;
 }
@@ -391,7 +391,7 @@ option {
 	border-radius: 50%;
 }
 
-.user-profile-image img {
+.user-upload-image img {
 	width: 60%;
 	border-radius: 50%;
 	margin: 0.5em;
@@ -403,7 +403,7 @@ option {
 	position: absolute;
     top: 15em;
     left: 10em;
-    color: var(--color-neutral-gray);
+    color: var(--color-primary-blue);
 }
 
 
@@ -502,7 +502,7 @@ option {
 
 /* Coyote / User Profile Page */
 
-#coyote-list-page [data-role = 'main'] {
+#list-page [data-role = 'main'] {
 	display: flex;
 	flex-direction: column;
 	padding: 0;
@@ -518,6 +518,8 @@ option {
 	width: 49%;
 	padding-top: 1em;
 }
+
+
 
 .filter-list {
 	line-height: 3rem;
@@ -606,7 +608,7 @@ option {
 }
 
 .nav-title-active {
-	color: var(--color-primary-yellow);
+	color: var(--color-primary-orange);
 }
 
 .nav-air {
@@ -755,6 +757,41 @@ option {
 .hidden {
 	display: none;
 }
+
+
+/* ANIMAL LIST */
+
+.coyote-list-item {
+   display: flex;
+   margin: 1em;
+   background-color: #ffffff;
+   box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+   border-radius: 1em;
+   overflow: hidden;
+}
+
+.coyote-list-icon img {
+   width: 100px;
+   height: 100px;
+   vertical-align: text-bottom;
+   object-fit: cover;
+}
+.coyote-llist-item {
+   display: flex;
+   margin: 1em;
+   background-color: #ffffff;
+   box-shadow: 2px 2px 10px rgba(0,0,0,0.15);
+   border-radius: 1em;
+   overflow: hidden;
+}
+.coyote-list-description {
+   padding:0.5em;
+   flex: 1 1 auto;
+}
+.coyote-list-name {
+   font-size:1.2em;
+}
+
 
 
 /* MEDIA QUERIES */

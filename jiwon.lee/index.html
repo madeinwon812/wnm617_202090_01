@@ -169,7 +169,7 @@
 
 		<div class="basin" id="add-choice">
 			<div class="form-control">
-				<a href="#coyote-list-page" class="form-button-primary">Choose Coyotes</a>
+				<a href="#list-page" class="form-button-primary">Choose Coyotes</a>
 			</div>
 			
 			<div class="form-control">
@@ -189,11 +189,11 @@
 					</a>
 				</li>
 				<li>
-					<a href="#coyote-list-page">
+					<a href="#list-page">
 						<div class="nav-icon">
 							<img src="img/list.svg" alt="List Icon">
 						</div>
-						<div class="nav-title">List</div>
+						<div class="nav-title">Coyotes</div>
 					</a>
 				</li>
 				<li>
@@ -230,13 +230,13 @@
 		<main data-role="main">
 			<div class="profile-button">
 				<div class="form-control">
-					<a href="#coyote-list-page" class="form-button-primary">Choose Coyotes</a>
+					<a href="#list-page" class="form-button-primary">Choose Coyotes</a>
 				</div>
 				<div class="form-control">
 					<p>Or</p>
 				</div>
 				<div class="form-control">
-					<a href="#add-coyote-page" class="form-button-primary">Add New Coyotes</a>
+					<a href="#coyote-add-page" class="form-button-primary">Add New Coyotes</a>
 				</div>
 			</div>
 		</main>
@@ -263,7 +263,7 @@
 		<main data-role="main">
 			<div class="scrollable">
 				<div class="all-form">
-					<form data-ajax="false" id="map-add-coyote-form">
+					<form data-ajax="false" id="map-add-coyote-page">
 						<div class="form-control">
 							<label class="form-label" for="new-coyote-profile-name">Name</label>
 							<input class="form-input" type="text" placeholder="Create a coyote name" data-role="none" id="new-coyote-profile-name">
@@ -271,16 +271,16 @@
 						<div class="form-control">
 							<label class="form-label" for="new-coyote-profile-breed">Breed</label>
 							<select class="form-input" data-role="none" id="new-coyote-profile-breed">
-							   <option value>Select breed</option>
-                               <option value>Western Coyotes</option>
-                               <option value>Central U.S. Coyotes</option>
-                               <option value>Eastern Coyotes</option>
-                               <option value>Central American Coyotes</option>
-                               <option value>Mexican Coyote</option>
-                               <option value>Salvador Coyote</option>
-                               <option value>Belize Coyote</option>
-                               <option value>Honduras Coyote</option>
-                               <option value>Southeastern Coyote</option>
+								<option value="">Select breed</option>
+						        <option value="Western Coyotes">Western Coyotes</option>
+						        <option value="Central U.S. Coyotes">Central U.S. Coyotes</option>
+						        <option value="Eastern Coyotes">Eastern Coyotes</option>
+						        <option value="Central American Coyotes">Central American Coyotes</option>
+						        <option value="Mexican Coyote">Mexican Coyote</option>
+						        <option value="Salvador Coyote">Salvador Coyote</option>
+						        <option value="Belize Coyote">Belize Coyote</option>
+						        <option value="Honduras Coyote">Honduras Coyote</option>
+						        <option value="Southeastern Coyote">Southeastern Coyote</option>
 							</select>
 						</div>
 						<div class="form-control">
@@ -335,7 +335,7 @@
 					</form>
 
 					<div class="form-control">
-						<a href="#coyote-list-page" class="js-animal-add form-button-primary">Add</a>
+						<a href="#list-page" class="js-animal-add form-button-primary">Add</a>
 					</div>
 				</div>
 			</div>			
@@ -345,7 +345,7 @@
 
 
 	<!-- List Add Coyote Page -->
-	<section data-role="page" id="add-coyote-page">
+	<section data-role="page" id="coyote-add-page">
 
 		<!-- Page Header -->
 		<header data-role="header">
@@ -362,8 +362,11 @@
 
 		<!-- Page Main -->
 		<main data-role="main">
-			<form class="all-form" id="add-coyote-form" data-ajax="false" style="padding:1em">
-				<input type="hidden" id="coyote-add-destination" value="#coyote-list-page">
+			<div class="all-form">
+			 <form id="coyote-add-form" data-ajax="false" style="padding:1em">
+
+				<input type="hidden" id="coyote-add-destination" value="#list-page">
+
 				<div class="form-control">
 					<label class="form-label" for="coyote-profile-name">Name</label>
 					<input class="form-input" type="text" placeholder="Create a coyote name" data-role="none" id="coyote-profile-name">
@@ -372,15 +375,15 @@
 					<label class="form-label" for="coyote-profile-breed">Breed</label>
 					<select class="form-input" data-role="none" id="coyote-profile-breed">
 						<option value="">Select breed</option>
-                        <option value>Western Coyotes</option>
-                        <option value>Central U.S. Coyotes</option>
-                        <option value>Eastern Coyotes</option>
-                        <option value>Central American Coyotes</option>
-                        <option value>Mexican Coyote</option>
-                        <option value>Salvador Coyote</option>
-                        <option value>Belize Coyote</option>
-                        <option value>Honduras Coyote</option>
-                        <option value>Southeastern Coyote</option>
+						<option value="Western Coyotes">Western Coyotes</option>
+						<option value="Central U.S. Coyotes">Central U.S. Coyotes</option>
+						<option value="Eastern Coyotes">Eastern Coyotes</option>
+						<option value="Central American Coyotes">Central American Coyotes</option>
+						<option value="Mexican Coyote">Mexican Coyote</option>
+						<option value="Salvador Coyote">Salvador Coyote</option>
+						<option value="Belize Coyote">Belize Coyote</option>
+						<option value="Honduras Coyote">Honduras Coyote</option>
+						<option value="Southeastern Coyote">Southeastern Coyote</option>
 					</select>
 				</div>
 				<div class="form-control">
@@ -433,9 +436,10 @@
 					<input class="form-input" type="text" id="coyote-profile-description" placeholder="Write something about this coyotes" data-role="none">
 				</div>
 				<div class="form-control">
-					<button type="submit" class="form-button-primary" data-role="none" data-rel="back">Add</button>
-				</div>
+					<a href="list-page" class="js-animal-add form-button-primary">Add</a>
+			    </div>
 			</form>
+		  </div>
 		</main>
 	</section>
 
@@ -489,7 +493,7 @@
 
 		<main data-role="main">
 			<div class="all-form">
-				<form id="loc-description-form">
+				<form id="location-add-form">
 					<div class="form-control">
 						<label class="form-label" for="loc-description">Description</label>
 						<input class="form-input" type="text" id="loc-description" placeholder="Write something about this location" data-role="none">
@@ -499,7 +503,7 @@
 						<img src="img/location-image.jpg">
 					</div>
 					<div class="form-control">
-						<a href="#map-page" class="form-button-primary js-location-add">Finish</a>
+						<a href="#map-page" class="form-button-primary js-location-add">Save</a>
 					</div>
 				</form>	
 			</div>
@@ -538,7 +542,7 @@
 					<input type="file" id="edit-upload-image" data-role="none" class="hidden">
 				</div>
 				<div class="form-control">
-					<a href="#coyote-profile-page" class="form-button-primary js-editupload">Save</a>
+					<a href="#coyote-profile-page" class="form-button-primary js-animal-edit">Save</a>
 				</div>
 			</form>
 		</main>
@@ -569,12 +573,12 @@
 			</div>
 			<form class="all-form">
 				<div class="form-control">
-					<input type="hidden" id="edit-user-upload-type">
-					<input type="hidden" id="edit-user-upload-id">
-					<input type="hidden" id="edit-user-upload-filename">
+					<input type="hidden" id="user-upload-type">
+					<input type="hidden" id="user-upload-id">
+					<input type="hidden" id="user-upload-filename">
 
-					<label for="edit-user-upload-image" class="image-picker"></label>
-					<input type="file" id="edit-user-upload-image" data-role="none" class="hidden">
+					<label for="user-upload-image" class="image-picker"></label>
+					<input type="file" id="user-upload-image" data-role="none" class="hidden">
 				</div>
 				<div class="form-control">
 					<a href="#user-profile-page" class="form-button-primary js-user-upload">Save</a>
@@ -587,61 +591,26 @@
 
 	<!-- Coyote List Page -->
 
-	<section data-role="page" id="coyote-list-page">
+	<section data-role="page" id="list-page">
 
 		<!-- Page Header -->
-		<header data-role="header">
+		<header data-role="header" style="padding:0 1em">
 			<nav>
 				<ul>
-					<li class="flex-stretch">
+					<li class="flex-stretch list-search">
 						<form class="hotdog" id="list-search-form"  data-ajax="false">
 							<input class="search form-input" type="search" placeholder="Search coyotes" data-role="none">
 						</form>
 					</li>
 					<li class="flex-none nav-icon">
-						<a href="#add-coyote-page"><img src="img/plus-circle.svg"></a>
+						<a href="#coyote-add-page"><img src="img/plus-circle.svg"></a>
 					</li>
 				</ul>
 			</nav>
 		</header>
 
 		<!-- Page Main -->
-		<main data-role="main">
-			<div class="filter-list">
-				<div class="filter" data-column="breed" data-value="">
-					<span>All</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Western Coyotes">
-					<span>Western Coyotes</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Central U.S. Coyotes">
-					<span>Central U.S. Coyotes</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Eastern Coyotes">
-					<span>Eastern Coyotes</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Central American Coyotes">
-					<span>Central American Coyotes</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Mexican Coyote">
-					<span>Mexican Coyote</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Salvador Coyote">
-					<span>Salvador Coyote</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Belize Coyote">
-					<span>Belize Coyote</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Honduras Coyote">
-					<span>Honduras Coyote</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="Southeastern Coyote">
-					<span>Southeastern Coyote</span>
-				</div>
-				<div class="filter" data-column="breed" data-value="San Pedro Martir Coyote">
-					<span>San Pedro Martir Coyote</span>
-				</div>
-			</div>
+			<main data-role="main">
 			<div class="list">
 				<div class="scrollable">
 					<div class="coyote-list"></div>
@@ -661,7 +630,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#coyote-list-page">
+					<a href="#list-page">
 						<div class="nav-icon">
 							<img src="img/list.svg" alt="List Icon">
 						</div>
@@ -691,7 +660,7 @@
 			<nav>
 				<ul>
 					<li class="flex-stretch nav-icon">
-						<a href="#coyote-list-page">
+						<a href="#list-page">
 							<img src="img/arrow-left.svg">
 						</a>
 					</li>
@@ -714,7 +683,7 @@
 					<div class="profile-map">
 						<div class="map"></div>
 						<div>
-							<a href="#add-location-page">
+							<a href="#location-add-page">
 								<img class="nav-air" src="img/plus-circle.svg">
 							</a>
 						</div>
@@ -735,7 +704,7 @@
 			<nav>
 				<ul>
 					<li class="flex-stretch nav-icon">
-						<a href="#coyote-list-page">
+						<a href="#list-page">
 							<img src="img/arrow-left.svg">
 						</a>
 					</li>
@@ -745,7 +714,7 @@
 
 		<!-- Page Main -->
 		<main data-role="main">
-			<div class="edit-coyote-form"></div>
+			<div class="coyote-edit-form"></div>
 		</main>
 	</section>
 
@@ -754,7 +723,11 @@
 	<section data-role="page" id="user-profile-page">
 
 		<!-- Page Header -->
-		<header data-role="header" data-template="#header-template"></header>
+		<header data-role="header">
+			<div class="ui-title">
+				<h2>PROFILE</h2>
+			</div>
+		</header>
 
 		<!-- Page Main -->
 		<main data-role="main">
@@ -782,7 +755,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#coyote-list-page">
+					<a href="#list-page">
 						<div class="nav-icon">
 							<img src="img/list.svg" alt="List Icon">
 						</div>
@@ -820,7 +793,7 @@
 		</header>
 
 		<main data-role="main">
-			<div class="all-form edit-user-form"></div>
+			<div class="all-form user-edit-form"></div>
 			<div class="all-form form-control">
 				<a href="#" data-rel="back" class="form-button-primary js-user-edit">Save</a>
 			</div>
@@ -830,80 +803,6 @@
 		</main>
 		
 	</section>
-
-
-	 <!-- Edit Password Page -->
-    <section data-role="page" id="edit-password-page">
-
-    	<!-- Page Header -->
-		<header data-role="header">
-			<nav>
-				<ul>
-					<li class="flex-stretch nav-icon">
-						<a href="#" data-rel="back">
-							<img src="img/arrow-left.svg">
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-
-		<main data-role="main">
-			<div class="all-form edit-user-form"></div>
-			<div class="all-form form-control">
-				<a href="#" data-rel="back" class="form-button-primary js-user-edit">Save</a>
-			</div>
-			<div class="form-control">
-				<a href="#user-profile-page" class="form-button-secondary">Cancel</a>
-			</div>
-		</main>
-		
-
-
-        <div class="edit-container">
-          <h1>Edit Password</h1>
-          <form id="edit-password-form" class="no-padding" data-ajax="false">
-            <div class="input-container">
-              <div class="form-control">
-                <label for="edit-current-password" class="form-label">
-                  Current Password
-                </label>
-                <input
-                  id="edit-current-password"
-                  type="text"
-                  class="form-input"
-                  data-role="none"
-                  placeholder="Type your current password"
-                />
-              </div>
-              <div class="form-control">
-                <label for="edit-new-password" class="form-label">New Password</label>
-                <input
-                  id="edit-new-password"
-                  type="text"
-                  class="form-input"
-                  data-role="none"
-                  placeholder="Type your new password"
-                />
-              </div>
-              <div class="form-control">
-                <label for="edit-again-password" class="form-label">Confirm Password</label>
-                <input
-                  id="edit-again-password"
-                  type="text"
-                  class="form-input"
-                  data-role="none"
-                  placeholder="Re-enter your new password"
-                />
-              </div>
-            </div>
-            <div class="form-control">
-              <a href="#" class="form-button">Update</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
 
 
 
@@ -933,7 +832,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#coyote-list-page">
+			<a href="#list-page">
 				<div class="nav-icon">
 					<img src="img/list.svg" alt="List Icon">
 				</div>

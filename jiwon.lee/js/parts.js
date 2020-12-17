@@ -2,23 +2,30 @@
 
 // templater(f=>{}) ([{},{}])
 
+   
 const makeAnimalList = templater(o=>`
    
-   <div class="list-item">
-      <a href="#coyote-profile-page" class="js-animal-jump" data-id="${o.id}">
-         <img class="coyote-profile-image" src="${o.img}">
+   <div class="coyote-list-item js-animal-jump" data-id="${o.id}">
+         <div class="coyote-list-icon">
+           <img src="${o.img}" alt="">
+         </div>
+         <div class="coyote-list-description">
+           <div class="coyote-list-name">${o.name}</div>
+           <div class="coyote-list-breed"><strong>Breed</strong> ${o.breed}</div>
+           <div class="coyote-list-color"><strong>Type</strong> ${o.color}</div>
+      </div>
       </a>
-      <p>${o.name}</p>
    </div>
 
 `);
 
 
+
 const makeUserProfile = templater(o=>`
 
-   <h4>Hello ${o.name}</h4>
+   <h4>Hello! ${o.name}</h4>
    <div class="profile-head">
-      <div class="user-profile-image">
+      <div class="user-upload-image">
          <img src="${o.img}" alt="">
       </div>
    </div>
@@ -86,6 +93,40 @@ const makeRecentWindow = templater(o=>`
 `);
 
 
+
+const makeUserEditForm = (o) => {
+
+return `
+   <form id="user-edit-form">
+      <div class="form-control">
+         <div class="user-upload-image">
+            <img src="${o.img}">
+         </div>
+         <div class="update-user-image">
+            <span>Update</span>
+         </div>
+      </div>
+      <div class="form-control">
+         <label class="form-label">Full Name</label>
+         <input class="form-input" type="text" id="user-name" data-role="none" value="${o.name}">
+      </div>
+      <div class="form-control">
+         <label class="form-label">Username</label>
+         <input class="form-input" type="text" id="user-username" data-role="none" value="${o.username}">
+      </div>
+      <div class="form-control">
+         <label class="form-label">Email</label>
+         <input class="form-input" type="text" id="user-email" data-role="none" value="${o.email}">
+      </div>
+      <div class="form-control">
+         <label class="form-label">Location</label>
+         <input class="form-input" type="text" id="user-location" data-role="none" value="${o.location}">
+      </div>
+   </form>
+   `;
+}
+
+
 const makeSelect = (arr,id,selection) => {
    return
    `<div class='form-select'>
@@ -124,38 +165,6 @@ const makeEditGenderSelect = (gender) => {
    },'');
 }
 
-
-const makeUserEditForm = (o) => {
-
-return `
-   <form id="edit-user-form">
-      <div class="form-control">
-         <div class="user-profile-image">
-            <img src="${o.img}">
-         </div>
-         <div class="update-user-image">
-            <span>Update</span>
-         </div>
-      </div>
-      <div class="form-control">
-         <label class="form-label">Full Name</label>
-         <input class="form-input" type="text" id="user-name" data-role="none" value="${o.name}">
-      </div>
-      <div class="form-control">
-         <label class="form-label">Username</label>
-         <input class="form-input" type="text" id="user-username" data-role="none" value="${o.username}">
-      </div>
-      <div class="form-control">
-         <label class="form-label">Email</label>
-         <input class="form-input" type="text" id="user-email" data-role="none" value="${o.email}">
-      </div>
-      <div class="form-control">
-         <label class="form-label">Location</label>
-         <input class="form-input" type="text" id="user-location" data-role="none" value="${o.location}">
-      </div>
-   </form>
-   `;
-}
 
 
 
@@ -198,40 +207,36 @@ return `
 }
 
 
-const drawAnimalList = (a,empty_phrase="No animals yet, you should add some.") => {
-   $("#coyote-list-page .animallist").html(
-      a.length ? makeAnimalList(a) : empty_phrase
-   )
+
+const drawAnimalList = (a,empty_phrase='You do not have any coyote list. Go ahead and add some!') => {
+   $("#list-page .coyote-list")
+      .html(a.length?makeAnimalList(a):empty_phrase);
 }
 
-const capitalize = s => s[0].toUpperCase()+s.substr(1);
 
-
-const filterList = (animals,type) => {
-   let a = [...(new Set(animals.map(o=>o[type])))];
-   return templater(o=>`<div class="filter" data-field="${type}" data-value="${o}">${capitalize(o)}</div>`)(a);
+const filterList = (animals,breed) => {
+   let a = [...(new Set(animals.map(o=>o[breed])))];
+   return templater(o=>`<div class="filter" data-field="${breed}" data-value="${o}">${o[0].toUpperCase()+o.substr(1)}</div>`)(a);
 }
 
 const makeFilterList = (animals) => {
    return `
-   <div class="filter" data-field="type" data-value="">All</div>
-   |
-   ${filterList(animals,'name')}
-   |
-   ${filterList(animals,'breed')}
-   `
+   <div class="filter" data-field="type" data-value="all">All</div> | 
+   ${filterList(animals,'breed')} | 
+   ${filterList(animals,'color')} 
+   `;
 }
 
-const makeUploaderImage = ({namespace,folder,name}) => {
-   console.log(namespace,folder,name)
-   $(`#${namespace}-image`).val(folder+name);
-   $(`#${namespace}-page .image-uploader`)
-      .css({'background-image':`url(${folder+name}`})
+
+const makeUploaderImage = (el, name, folder='') => {
+
+   $(el).parent().css({'background-image':`url(${folder+name}`}).addClass('picked')
+      .prev().val(folder+name);
 }
 
 const makeAddAnimalChoice = async(selection) => {
    let d = await query({
-      type:'animals_from_user',
+      type:'animals_by_user_id',
       params:[sessionStorage.userId]
    });
 

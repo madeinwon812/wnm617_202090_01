@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -121,18 +122,16 @@ function makeStatement($data) {
 
       // Recent locations
       case "recent_locations":
-         return makeQuery($c,"SELECT
-            a.*, l.* 
-            FROM `track_animals` AS a
+         return makeQuery($c,"SELECT *
+            FROM `track_animals` a
             RIGHT JOIN (
-               SELECT aid,lat,lng,icon
-               FROM `track_locations`
+               SELECT * FROM `track_locations`
                ORDER BY `date_create` DESC
-            ) AS l
+            ) l
             ON a.id = l.aid
-            WHERE a.uid = ?
-            GROUP BY l.aid",$p);
-
+            WHERE a.uid=?
+            GROUP BY l.aid
+            ",$p);
 
 
       //Search 
@@ -141,7 +140,7 @@ function makeStatement($data) {
         return makeQuery($c,"SELECT * FROM
             `track_animals`
             WHERE
-               `name` LIKE ? AND
+               `breed` LIKE ? AND
                `uid` = ?
             ",$p);
 
@@ -244,6 +243,8 @@ function makeStatement($data) {
          ["result" => "success"];
 
 
+      // Edit animal
+
       case "update_animal":
          $r = makeQuery($c,"UPDATE
             `track_animals`
@@ -268,14 +269,26 @@ function makeStatement($data) {
          return
          ["result"=>"success"];
 
-          case "update_user_image":
+
+         case "edit_user_image":
          $r = makeQuery($c,"UPDATE
-            `track_users`
-            SET
-            `img` = ?
-            WHERE `id` = ?
-            ",$p,false);
-         return ["result"=>"success"];
+            `track_users` SET
+            `img`=? WHERE
+            id=?
+            ","si",$p);
+         return
+         ["result"=>"success"];
+
+         case "update_user_image":
+         $r = makeQuery($c,"UPDATE
+            `track_users` SET
+            `img`=? WHERE
+            id=?
+            ","si",$p);
+         return
+         ["result"=>"success"];
+
+
 
 
 
@@ -310,7 +323,7 @@ function makeStatement($data) {
 // Upload Images
 
 if(!empty($_FILES)){
-   $r = makeUpload("image","../../uploads/");
+   $r = makeUpload("image","../uploads/");
    die(json_encode($r));
 }
 

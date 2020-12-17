@@ -9,23 +9,12 @@ const query = (options) => {
    }).then(d=>d.json())
 }
 
-const upload = (file) => {
-   
-   let fd = new FormData();
-   fd.append("image",file);
-
-   return fetch('data/api.php',{
-      method:'POST',
-      body: fd
-   }).then(d=>d.json());
-}
-
-// CURRIED FUNCTION the function makes other functions
+// currying functions
 const templater = f => a =>
    (Array.isArray(a)?a:[a])
    .reduce((r,o,i,a)=>r+f(o,i,a),'');
 
-
+   
 const checkData = (exterior_check) => new Promise((resolve,reject)=>{
    let timeout = 0;
    const interior_check = () => {

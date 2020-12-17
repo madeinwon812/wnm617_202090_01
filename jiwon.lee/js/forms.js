@@ -5,7 +5,7 @@ const checkSignupForm = () => {
    let email = $("#signup-email").val();
    let location = $("#signup-location").val();
    let password = $("#signup-password").val();
-   let passwordconfirm = $("#signup-password-confirm").val();
+   let passwordconfirm = $("#signup-confirm").val();
 
    if(password!=passwordconfirm) {
       throw "Passwords don't match";
@@ -23,10 +23,10 @@ const checkSignupForm = () => {
 }
 
 const checkUserEditForm = () => {
-   let name = $("#user-edit-name").val();
-   let username = $("#user-edit-username").val();
-   let email = $("#user-edit-email").val();
-   let location = $("#user-edit-location").val();
+   let name = $("#user-name").val();
+   let username = $("#user-username").val();
+   let email = $("#user-email").val();
+   let location = $("#user-location").val();
 
    query({
       type:'update_user',
@@ -39,7 +39,7 @@ const checkUserEditForm = () => {
    })
 }
 
-
+// Add Coyote form
 const checkAnimalAddForm = () => {
    let name = $("#coyote-profile-name").val();
    let breed = $("#coyote-profile-breed").val();
@@ -57,22 +57,54 @@ const checkAnimalAddForm = () => {
          throw d.error;
       }
 
-      $("#add-coyote-form")[0].reset();
+      $("#coyote-add-form")[0].reset();
 
       console.log(d);
       sessionStorage.animalId = d.id;
       $.mobile.navigate($("#coyote-add-destination").val());
    })
 }
+
+// Add Coyote on Map
+
+const checkAnimalAddMapForm = () => {
+   let name = $("#new-coyote-profile-name").val();
+   let breed = $("#new-coyote-profile-breed").val();
+   let years = $("#new-coyote-profile-years").val();
+   let months = $("#new-coyote-profile-months").val();
+   let color = $("#new-coyote-profile-color").val();
+   let gender = $("#new-oyote-profile-gender").val();
+   let description = $("#new-coyote-profile-description").val();
+
+   query({
+      type:'insert_animal',
+      params:[sessionStorage.userId,name,breed,years,months,color,gender,description]
+   }).then(d=>{
+      if(d.error) {
+         throw d.error;
+      }
+
+      $("#coyote-add-form")[0].reset();
+
+      console.log(d);
+      sessionStorage.animalId = d.id;
+      $.mobile.navigate($("#coyote-add-destination").val());
+   })
+}
+
+
 const checkAnimalEditForm = () => {
-   let name = $("#animal-edit-name").val();
-   let type = $("#animal-edit-type").val();
-   let breed = $("#animal-edit-breed").val();
-   let description = $("#coyote-edit-description").val();
+   let name = $("#coyote-name").val();
+   let breed = $("#coyote-breed").val();
+   let color = $("#coyote-color").val();
+   let years = $("#coyote-years").val();
+   let months = $("#coyote-months").val();
+   let gender = $("#coyote-gender").val();
+   let description = $("#coyote-description").val();
 
    query({
       type:'update_animal',
-      params:[name,type,breed,description,sessionStorage.animalId]
+      params:[name,breed,color,years,months,gender,description,sessionStorage.animalId]
    }).then(d=>{
       if(d.error) {
          throw d.error;
@@ -82,12 +114,10 @@ const checkAnimalEditForm = () => {
 }
 
 
-
-
 const checkLocationAddForm = () => {
    let lat = $("#location-add-lat").val();
    let lng = $("#location-add-lng").val();
-   let description = $("#add-description-page").val();
+   let description = $("#loc-description").val();
 
    query({
       type:'insert_location',
@@ -97,18 +127,13 @@ const checkLocationAddForm = () => {
          throw d.error;
       }
 
-      $("#loc-description-form")[0].reset();
+      $("#location-add-form")[0].reset();
 
       console.log(d);
 
       window.history.go(-2);
    })
 }
-
-
-
-
-
 
 const checkAnimalDelete = id => {
    query({
@@ -121,9 +146,6 @@ const checkAnimalDelete = id => {
       window.history.back();
    })
 }
-
-
-
 
 const checkSearchForm = async() => {
    let s = $("#search form-input").val()
@@ -139,8 +161,6 @@ const checkSearchForm = async() => {
    console.log(r)
 }
 
-
-
 const checkListFilter = async ({field,value}) => {
    let r = value=="" ?
       await query({
@@ -154,10 +174,6 @@ const checkListFilter = async ({field,value}) => {
 
    drawAnimalList(r.result,"Search produced no results.");
 }
-
-
-
-
 
 const checkUpload = file => {
    let fd = new FormData();
